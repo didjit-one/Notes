@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Notes</string>
+    <string name="note_title_hint">Enter a note...</string>
+    <string name="note_title_label">Title</string>
+    <string name="note_details_label">Details</string>
+    <string name="note_done_label">Done</string>
+    <string name="date_picker_title">Date of note:</string>
+    <string name="new_note"> New Note </string>
+    <string name="show_subtitle"> Show Subtitle </string>
+    <string name="hide_subtitle"> Hide Subtitle </string>
+    <string name="subtitle_format">%1$s notes </string>
+    <plurals name="subtitle_plural">
+        <item quantity="one">%1$s note </item>
+        <item quantity="other">%1$s notes </item>
+    </plurals>
+</resources>
