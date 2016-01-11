@@ -44,7 +44,7 @@ public class NoteLab {
 
     }
 
- 
+
     public List<Note> getNotes() {
         List<Note> notes = new ArrayList<>();
         NoteCursorWrapper cursor = queryNotes(null, null);

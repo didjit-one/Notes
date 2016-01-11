@@ -1,6 +1,5 @@
 package com.didjit.notes;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,16 +11,11 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.util.List;
 import java.util.UUID;
-
-/**
- * Created by didjit on 09.01.16.
- */
 public class NotePagerActivity extends AppCompatActivity {
-    private ViewPager mViewPager;
-    private List<Note> mNotes;
-
     private static final String EXTRA_NOTE_ID = "com.didjit.notes.note_id";
 
+    private ViewPager mViewPager;
+    private List<Note> mNotes;
 
     public static Intent newIntent(Context packageContext, UUID noteId) {
         Intent intent = new Intent(packageContext, NotePagerActivity.class);
@@ -35,9 +29,11 @@ public class NotePagerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_note_pager);
         UUID noteId = (UUID) getIntent().getSerializableExtra(EXTRA_NOTE_ID);
         mViewPager = (ViewPager) findViewById(R.id.activity_note_pager_view_pager);
+
         mNotes = NoteLab.get(this).getNotes();
         FragmentManager fragmentManager = getSupportFragmentManager();
         mViewPager.setAdapter(new FragmentStatePagerAdapter(fragmentManager) {
+
             @Override
             public Fragment getItem(int position) {
                 Note note = mNotes.get(position);
@@ -49,11 +45,28 @@ public class NotePagerActivity extends AppCompatActivity {
                 return mNotes.size();
             }
         });
-        for (int i = 0; i < mNotes.size(); i++) {
-            if (mNotes.get(i).getId().equals(noteId))
-                mViewPager.setCurrentItem(i);
-            break;
 
+        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
+
+            @Override
+            public void onPageSelected(int position) {
+                Note note = mNotes.get(position);
+                if (note.getTitle() != null) {
+                    setTitle(note.getTitle());
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) { }
+        });
+
+        for (int i = 0; i < mNotes.size(); i++) {
+            if (mNotes.get(i).getId().equals(noteId)) {
+                mViewPager.setCurrentItem(i);
+                break;
+            }
         }
     }
 }
