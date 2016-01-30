@@ -19,7 +19,7 @@ import java.util.GregorianCalendar;
  * Created by didjit on 09.01.16.
  */
 public class DatePickerFragment extends DialogFragment {
-    public static final String EXTRA_DATE = "com.didjit.notes..date";
+    public static final String EXTRA_DATE = "com.didjit.notes.date";
     private static final String ARG_DATE = "date";
     private DatePicker mDatePicker;
 

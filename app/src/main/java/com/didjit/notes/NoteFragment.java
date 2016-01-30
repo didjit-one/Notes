@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -116,7 +117,9 @@ public class NoteFragment extends Fragment {
     }
 
     private void updateDate() {
-        mDateButton.setText(mNote.getDate().toString());
+        String dateFormat="EEE, dd MMMM, yyyy";
+        String dateString= DateFormat.format(dateFormat,mNote.getDate()).toString();
+        mDateButton.setText(dateString);
     }
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -129,10 +132,10 @@ public class NoteFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_item_delete_note:
-              // Note note = new Note();
+
                 UUID noteId=mNote.getId();
                 NoteLab.get(getActivity()).deleteNote(noteId);
-               // Toast.makeText(getActivity(),)
+
                 getActivity().finish();
                Intent intent = NotePagerActivity.newIntent(getActivity(), mNote.getId());
                 startActivity(intent);

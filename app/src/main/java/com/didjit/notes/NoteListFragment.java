@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -134,7 +135,9 @@ public class NoteListFragment extends Fragment {
         public void bindNote(Note note) {
             mNote = note;
             mTitleTextView.setText(mNote.getTitle());
-            mDateTextView.setText(mNote.getDate().toString());
+            String dateFormat="EEE, dd MMMM, yyyy";
+            String dateString= DateFormat.format(dateFormat, mNote.getDate()).toString();
+            mDateTextView.setText(dateString);
             mDoneCheckBox.setChecked(mNote.isDone());
 
         }
