@@ -8,6 +8,9 @@ import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -44,6 +47,7 @@ public class NoteFragment extends Fragment {
         super.onCreate(savedInstanceState);
         UUID noteId =  (UUID) getArguments().getSerializable(ARG_NOTE_ID);
         mNote = NoteLab.get(getActivity()).getNote(noteId);
+        setHasOptionsMenu(true);
 
     }
 
@@ -113,6 +117,30 @@ public class NoteFragment extends Fragment {
 
     private void updateDate() {
         mDateButton.setText(mNote.getDate().toString());
+    }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_note, menu);
+
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item_delete_note:
+              // Note note = new Note();
+                UUID noteId=mNote.getId();
+                NoteLab.get(getActivity()).deleteNote(noteId);
+               // Toast.makeText(getActivity(),)
+                getActivity().finish();
+               Intent intent = NotePagerActivity.newIntent(getActivity(), mNote.getId());
+                startActivity(intent);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }

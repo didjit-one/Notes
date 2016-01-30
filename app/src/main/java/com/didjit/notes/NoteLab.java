@@ -44,6 +44,13 @@ public class NoteLab {
 
     }
 
+    public void deleteNote(UUID noteId) {
+
+String uuidString=noteId.toString();
+        mDatabase.delete(NoteTable.NAME,NoteTable.Cols.UUID+"=?",new String[]{uuidString});
+
+    }
+
 
     public List<Note> getNotes() {
         List<Note> notes = new ArrayList<>();
