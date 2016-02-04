@@ -12,7 +12,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class NoteBaseHelper extends SQLiteOpenHelper {
     private static final String TAG = "NoteBaseHelper";
     private static final int VERSION = 1;
-    private static final String DATABASE_NAME = "noteBase.db";
+     public static final String DATABASE_NAME = "noteBase.db";
 
     public NoteBaseHelper(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
