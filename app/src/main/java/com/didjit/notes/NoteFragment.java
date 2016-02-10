@@ -78,9 +78,6 @@ public class NoteFragment extends Fragment {
             }
         });
         mDateButton = (Button) v.findViewById(R.id.note_date);
-//        String dateFormat = "EEE, dd MMMM yyyy ";
-//        String dateString = DateFormat.format(dateFormat, mNote.getDate()).toString();
-//        mDateButton.setText(dateString);
         updateDate();
         mDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,23 +101,8 @@ public class NoteFragment extends Fragment {
         return v;
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode != Activity.RESULT_OK) {
-            return;
-        }
-        if (requestCode == REQUEST_DATE) {
-            Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
-            mNote.setDate(date);
-            updateDate();
-        }
-    }
 
-    private void updateDate() {
-        String dateFormat="EEE, dd MMMM, yyyy";
-        String dateString= DateFormat.format(dateFormat,mNote.getDate()).toString();
-        mDateButton.setText(dateString);
-    }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
@@ -145,5 +127,20 @@ public class NoteFragment extends Fragment {
                 return super.onOptionsItemSelected(item);
         }
     }
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
+        if (requestCode == REQUEST_DATE) {
+            Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
+            mNote.setDate(date);
+            updateDate();
+        }
+    }
+    private void updateDate() {
+        String dateFormat="EEE, dd MMMM, yyyy";
+        String dateString= DateFormat.format(dateFormat,mNote.getDate()).toString();
+        mDateButton.setText(dateString);
+    }
 }
