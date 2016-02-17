@@ -1,10 +1,10 @@
 package com.didjit.notes;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.content.Intent;
+import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.format.DateFormat;
@@ -19,9 +19,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.UUID;
-
 
 /**
  * Created by didjit on 06.01.16.
@@ -47,9 +46,10 @@ public class NoteFragment extends Fragment {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         UUID noteId =  (UUID) getArguments().getSerializable(ARG_NOTE_ID);
         mNote = NoteLab.get(getActivity()).getNote(noteId);
-        setHasOptionsMenu(true);
+
 
     }
 
@@ -118,7 +118,6 @@ public class NoteFragment extends Fragment {
 
                 UUID noteId=mNote.getId();
                 NoteLab.get(getActivity()).deleteNote(noteId);
-
                 getActivity().finish();
                Intent intent = NotePagerActivity.newIntent(getActivity(), mNote.getId());
                 startActivity(intent);
@@ -141,7 +140,7 @@ public class NoteFragment extends Fragment {
     }
     private void updateDate() {
         String dateFormat="EEE, dd MMMM, yyyy";
-        String dateString= DateFormat.format(dateFormat,mNote.getDate()).toString();
+        String dateString= DateFormat.format(dateFormat, mNote.getDate()).toString();
         mDateButton.setText(dateString);
     }
 }

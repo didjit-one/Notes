@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+
 /**
  * Created by didjit on 09.01.16.
  */
@@ -32,6 +33,8 @@ public class NoteListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+
+
     }
 
     @Override

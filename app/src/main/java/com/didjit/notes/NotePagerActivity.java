@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.util.List;
 import java.util.UUID;
+
 public class NotePagerActivity extends AppCompatActivity {
     private static final String EXTRA_NOTE_ID = "com.didjit.notes.note_id";
 
@@ -27,6 +28,8 @@ public class NotePagerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_pager);
+
+
         UUID noteId = (UUID) getIntent().getSerializableExtra(EXTRA_NOTE_ID);
         mViewPager = (ViewPager) findViewById(R.id.activity_note_pager_view_pager);
 

@@ -7,11 +7,12 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.didjit.notes.database.NoteBaseHelper;
 import com.didjit.notes.database.NoteCursorWrapper;
-import com.didjit.notes.database.NoteDbSchema.NoteTable;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import static com.didjit.notes.database.NoteDbSchema.NoteTable;
 
 /**
  * Created by didjit on 08.01.16.
